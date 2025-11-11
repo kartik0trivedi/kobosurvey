@@ -12,6 +12,7 @@ library(shiny)
 library(httr)
 library(jsonlite)
 library(DT)
+library(rsconnect)
 
 # Function to fetch KoBo data
 fetch_kobo_data <- function(assetid, token, host = "kf.kobotoolbox.org") {
@@ -43,3 +44,6 @@ server <- function(input, output, session) {
 
 # Run app
 shinyApp(ui, server)
+
+# Deploy app
+#rsconnect::deployApp()
