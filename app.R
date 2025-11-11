@@ -15,7 +15,7 @@ library(DT)
 library(rsconnect)
 
 # Function to fetch KoBo data
-fetch_kobo_data <- function(assetid, token, host = "kf.kobotoolbox.org") {
+fetch_kobo_data <- function(assetid, token, host = Sys.getenv("KOBO_HOST", "kf.kobotoolbox.org")) {
   url <- paste0("https://", host, "/api/v2/assets/", assetid, "/data/?format=json")
   res <- GET(url, add_headers(Authorization = paste("Token", token)))
   stop_for_status(res)
@@ -25,7 +25,7 @@ fetch_kobo_data <- function(assetid, token, host = "kf.kobotoolbox.org") {
 
 # UI
 ui <- fluidPage(
-  titlePanel("KoBo Dashboard"),
+  titlePanel("Intelehealth CBAC Form"),
   DTOutput("table")
 )
 
@@ -46,4 +46,4 @@ server <- function(input, output, session) {
 shinyApp(ui, server)
 
 # Deploy app
-#rsconnect::deployApp()
+#rsconnect::deployApp() #commented out to avoid deploying to shinyapps.io - uncomment to deploy or copy paste the code to terminal to deploy to shinyapps.io
