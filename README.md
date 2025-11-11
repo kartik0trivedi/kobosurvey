@@ -2,6 +2,15 @@
 
 This repo contains a Shiny app that pulls KoBo Toolbox data and serves it via `shinyapps.io`. Use the checklist below whenever you spin up a similar project.
 
+## Folder Structure
+
+- `app.R` – Shiny app UI/server; reads KoBo credentials from the environment.
+- `.Renviron` – Local secrets for KoBo and rsconnect (ignored by git).
+- `.Rprofile` – Auto-configures rsconnect using environment variables; usually no edits needed.
+- `README.md` – This guide.
+- `.gitignore` – Keeps secrets and deployment artifacts (`rsconnect/`) out of version control.
+- `rsconnect/` – Deployment metadata created by `deployApp()` (ignored).
+
 ## 1. Project Secrets (`.Renviron`)
 
 Create a project-level `.Renviron` in the repo root (not tracked by git) with the credentials you need:
