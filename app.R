@@ -12,7 +12,7 @@ library(shiny)
 library(httr)
 library(jsonlite)
 library(DT)
-library(rsconnect)
+# library(rsconnect)
 
 # Function to fetch KoBo data
 fetch_kobo_data <- function(assetid, token, host = Sys.getenv("KOBO_HOST", "kf.kobotoolbox.org")) {
@@ -35,10 +35,10 @@ server <- function(input, output, session) {
   asset <- Sys.getenv("KOBO_ASSETID")    # Your Form ID
   
   # Fetch data once at startup
-  df <- fetch_kobo_data(asset, token)
+  df <- fetch_kobo_data(asset, token) # fetch data from kobo
   
   output$table <- renderDT({
-    datatable(df, options = list(pageLength = 10))
+    datatable(df, options = list(pageLength = 10)) # rendering data table.
   })
 }
 
@@ -46,4 +46,4 @@ server <- function(input, output, session) {
 shinyApp(ui, server)
 
 # Deploy app
-#rsconnect::deployApp() #commented out to avoid deploying to shinyapps.io - uncomment to deploy or copy paste the code to terminal to deploy to shinyapps.io
+# rsconnect::deployApp() #commented out to avoid deploying to shinyapps.io - uncomment to deploy or copy paste the code to terminal to deploy to shinyapps.io
